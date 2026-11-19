@@ -1,0 +1,9 @@
+.vs/
+**/bin/
+**/obj/
+report_images/
+create_lab6_report.py
+*.user
+*.suo
+*.mdf
+*.ldf

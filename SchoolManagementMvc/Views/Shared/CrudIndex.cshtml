@@ -1,0 +1,7 @@
+@model System.Collections.IEnumerable
+@using System.Reflection
+@{ ViewBag.Title = ViewBag.EntityName + " Management"; var type = Type.GetType("SchoolManagementMvc.Models." + (string)ViewBag.EntityName + ", SchoolManagementMvc"); var props = type.GetProperties().Where(p => p.PropertyType == typeof(string) || p.PropertyType == typeof(int) || p.PropertyType == typeof(decimal) || p.PropertyType == typeof(decimal?) || p.PropertyType == typeof(DateTime)); }
+<div class="page-head"><div><span class="eyebrow">DATABASE RECORDS</span><h1>@ViewBag.EntityName Management</h1><p class="muted">View and maintain @ViewBag.EntityName.ToString().ToLower() records.</p></div>@Html.ActionLink("+ Add " + (string)ViewBag.EntityName, "Create", null, new { @class="btn primary" })</div>
+<div class="card table-card"><table><thead><tr>@foreach(var p in props){<th>@p.Name</th>}<th>Actions</th></tr></thead><tbody>
+@foreach(var item in Model){<tr>@foreach(var p in props){ var value=p.GetValue(item); <td>@(value is DateTime ? ((DateTime)value).ToString("yyyy-MM-dd") : value)</td>}<td class="actions">@Html.ActionLink("View", "Details", new { id=type.GetProperties().First(p=>p.Name.EndsWith("ID")).GetValue(item) }) @Html.ActionLink("Edit", "Edit", new { id=type.GetProperties().First(p=>p.Name.EndsWith("ID")).GetValue(item) }) @Html.ActionLink("Delete", "Delete", new { id=type.GetProperties().First(p=>p.Name.EndsWith("ID")).GetValue(item) })</td></tr>}
+</tbody></table></div>

@@ -1,0 +1,3 @@
+@model object
+@{ var idProp=Model.GetType().GetProperties().First(p=>p.Name.EndsWith("ID")); ViewBag.Title="Delete "+ViewBag.EntityName; }
+<div class="card danger-card"><span class="eyebrow">CONFIRM DELETE</span><h1>@ViewBag.Title?</h1><p>This action removes record <strong>#@idProp.GetValue(Model)</strong> from the database.</p>@using(Html.BeginForm()){ @Html.AntiForgeryToken() @Html.Hidden("id",idProp.GetValue(Model)) <button class="btn danger" type="submit">Delete record</button> @Html.ActionLink("Cancel","Index",null,new{@class="btn secondary"}) }</div>

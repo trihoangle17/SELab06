@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>@ViewBag.Title - School Management</title><link rel="stylesheet" href="~/Content/site.css" /></head>
+<body>
+<header><div class="brand"><span class="mark">SM</span><div><strong>School Management</strong><small>ASP.NET MVC Database First</small></div></div>
+@if (Session["Username"] != null) { <nav>
+@Html.ActionLink("Students", "Index", "Students") @Html.ActionLink("Courses", "Index", "Courses") @Html.ActionLink("Instructors", "Index", "Instructors") @Html.ActionLink("Departments", "Index", "Departments") @Html.ActionLink("Enrollments", "Index", "Enrollments") @Html.ActionLink("Student Report", "Index", "Report")
+</nav><div class="user">@Session["Username"] · @Html.ActionLink("Sign out", "Logout", "Account")</div> }</header>
+<main class="container">@RenderBody()</main><footer>SE Lab 6 · Lê Hoàng Trí · 524H0199</footer>
+</body></html>

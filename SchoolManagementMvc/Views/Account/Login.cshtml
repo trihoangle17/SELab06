@@ -1,0 +1,9 @@
+@model SchoolManagementMvc.Models.LoginViewModel
+@{ ViewBag.Title = "Sign in"; }
+<section class="login-shell"><div class="login-copy"><span class="eyebrow">SE LAB 6</span><h1>Manage school data in one place.</h1><p>Database First ASP.NET MVC application for students, courses, instructors, departments and enrollments.</p></div>
+<div class="card login-card"><h2>Welcome back</h2><p class="muted">Sign in to continue to the dashboard.</p>
+@using (Html.BeginForm()) { @Html.AntiForgeryToken() @Html.ValidationSummary(true, "", new { @class="error" })
+<label>Username</label>@Html.TextBoxFor(x => x.Username, new { @class="input", placeholder="Enter username", autofocus="autofocus" })@Html.ValidationMessageFor(x => x.Username, "", new { @class="error" })
+<label>Password</label>@Html.PasswordFor(x => x.Password, new { @class="input", placeholder="Enter password" })@Html.ValidationMessageFor(x => x.Password, "", new { @class="error" })
+<button class="btn primary full" type="submit">Sign in</button> }
+<div class="demo">Demo account: <strong>admin</strong> / <strong>Lab6@@123</strong></div></div></section>

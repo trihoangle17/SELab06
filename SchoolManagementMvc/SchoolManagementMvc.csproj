@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D35E832-2E2B-44B9-A9F3-8FD895E262B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SchoolManagementMvc</RootNamespace>
+    <AssemblyName>SchoolManagementMvc</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <MvcBuildViews>false</MvcBuildViews>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType><Optimize>true</Optimize><OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" /><Reference Include="System.Core" /><Reference Include="System.Data" /><Reference Include="System.Data.DataSetExtensions" /><Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" /><Reference Include="System.Configuration" /><Reference Include="System.Drawing" />
+    <Reference Include="System.Web" /><Reference Include="System.Web.Abstractions" /><Reference Include="System.Web.Extensions" /><Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" /><Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.Mvc"><HintPath>lib\System.Web.Mvc.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="System.Web.Razor"><HintPath>lib\System.Web.Razor.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="System.Web.WebPages"><HintPath>lib\System.Web.WebPages.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="System.Web.WebPages.Razor"><HintPath>lib\System.Web.WebPages.Razor.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="EntityFramework"><HintPath>lib\EntityFramework.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="EntityFramework.SqlServer"><HintPath>lib\EntityFramework.SqlServer.dll</HintPath><Private>true</Private></Reference>
+  </ItemGroup>
+  <ItemGroup><Compile Include="App_Start\**\*.cs" /><Compile Include="Controllers\**\*.cs" /><Compile Include="Models\**\*.cs" /><Compile Include="Global.asax.cs" /><Compile Include="Properties\AssemblyInfo.cs" /></ItemGroup>
+  <ItemGroup><Content Include="Global.asax" /><Content Include="Web.config" /><Content Include="Views\**\*" /><Content Include="Content\**\*" /><Content Include="Scripts\**\*" /><Content Include="Database\**\*" /><Content Include="README.md" /></ItemGroup>
+  <ItemGroup><None Include="lib\**\*.dll" /></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')" />
+</Project>

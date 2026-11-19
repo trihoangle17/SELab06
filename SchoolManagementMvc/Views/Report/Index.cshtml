@@ -1,0 +1,5 @@
+@model SchoolManagementMvc.Models.CourseReportViewModel
+@{ ViewBag.Title="Student Report"; }
+<div class="page-head"><div><span class="eyebrow">REPORTING</span><h1>Student Report</h1><p class="muted">Filter enrolled students by course, preview the result, or export it to PDF.</p></div></div>
+<div class="card filter-card">@using(Html.BeginForm("Generate","Report",FormMethod.Post)){@Html.AntiForgeryToken()<div class="field"><label>Select course</label>@Html.DropDownListFor(x=>x.SelectedCourseID,Model.Courses,new{@class="input"})</div><button class="btn primary" name="action" value="preview">Print preview</button><button class="btn secondary" name="action" value="export">Export PDF</button>}</div>
+<div class="card table-card"><h2>@Model.SelectedCourseTitle</h2><table><thead><tr><th>Student ID</th><th>First name</th><th>Last name</th><th>Grade</th></tr></thead><tbody>@foreach(var s in Model.Students){<tr><td>@s.StudentID</td><td>@s.FirstName</td><td>@s.LastName</td><td>@(s.Grade.HasValue?s.Grade.Value.ToString("0.00"):"N/A")</td></tr>}@if(!Model.Students.Any()){<tr><td colspan="4" class="empty">No enrollment records for this course.</td></tr>}</tbody></table></div>

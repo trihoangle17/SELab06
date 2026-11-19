@@ -1,0 +1,3 @@
+@model object
+@{ var props=Model.GetType().GetProperties().Where(p=>p.PropertyType==typeof(string)||p.PropertyType==typeof(int)||p.PropertyType==typeof(decimal)||p.PropertyType==typeof(decimal?)||p.PropertyType==typeof(DateTime)); ViewBag.Title=ViewBag.EntityName+" Details"; }
+<div class="page-head"><div><span class="eyebrow">RECORD DETAILS</span><h1>@ViewBag.Title</h1></div></div><div class="card details">@foreach(var p in props){var value=p.GetValue(Model);<div><span>@p.Name</span><strong>@(value is DateTime?((DateTime)value).ToString("yyyy-MM-dd"):value)</strong></div>}</div><p>@Html.ActionLink("Back to list","Index",null,new{@class="btn secondary"})</p>

@@ -1,0 +1,8 @@
+@model object
+@using System.Reflection
+@{ var type=Model.GetType(); var idProp=type.GetProperties().First(p=>p.Name.EndsWith("ID")); bool create=ViewBag.IsCreate==true; ViewBag.Title=(create?"Add ":"Edit ")+ViewBag.EntityName; var props=type.GetProperties().Where(p=>p.PropertyType==typeof(string)||p.PropertyType==typeof(int)||p.PropertyType==typeof(decimal)||p.PropertyType==typeof(decimal?)||p.PropertyType==typeof(DateTime)); }
+<div class="page-head"><div><span class="eyebrow">EDIT RECORD</span><h1>@ViewBag.Title</h1></div></div><div class="card form-card">
+@using(Html.BeginForm(create?"Create":"Edit", null, FormMethod.Post, new{})){@Html.AntiForgeryToken() @Html.ValidationSummary(true,"",new{@class="error"})
+if(!create){@Html.Hidden(idProp.Name,idProp.GetValue(Model))}
+foreach(var p in props.Where(x=>x.Name!=idProp.Name)){var value=p.GetValue(Model);<div class="field"><label>@p.Name</label>@Html.TextBox(p.Name,value is DateTime?((DateTime)value).ToString("yyyy-MM-dd"):value,new{@class="input",type=p.PropertyType==typeof(DateTime)?"date":"text"})@Html.ValidationMessage(p.Name,"",new{@class="error"})</div>}
+<div class="form-actions"><button class="btn primary" type="submit">Save changes</button>@Html.ActionLink("Cancel","Index",null,new{@class="btn secondary"})</div>}</div>
